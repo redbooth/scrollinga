@@ -1,12 +1,10 @@
-//TODO this file does not belong in the lib folder. Should be opensourced and
-//included as a separate library.
-
 const utils = {
   toArray: Array.prototype.slice
 };
 
-class Scrollinga {
+const DEFAULT_INTERVAL_FALLBACK = 100;
 
+class Scrollinga {
   /**
    * Scrollinga constructor
    *
@@ -16,7 +14,7 @@ class Scrollinga {
    */
   constructor(options={}) {
     this.target = options.target;
-    this.interval = options.interval || 100;
+    this.interval = options.interval || DEFAULT_INTERVAL_FALLBACK;
 
     this.setInitialScrollLock(options.position);
     this.setupListeners();
@@ -86,7 +84,7 @@ class Scrollinga {
    * Locks the scroll at the bottom.
    */
   setScrollLockAtBottom() {
-    var target = this.target
+    const target = this.target
 
     this.setScrollLock({
       at: () => target.scrollHeight
@@ -100,8 +98,7 @@ class Scrollinga {
    * Locks the scroll at the top.
    */
   setScrollLockAtTop() {
-    var target = this.target
-      , self = this;
+    const target = this.target;
 
     this.setScrollLock({
       at: () => 0
@@ -115,8 +112,8 @@ class Scrollinga {
    * Locks the scroll at the current position.
    */
   setScrollLockAtCurrentPosition() {
-    var prevScrollHeight = this.target.scrollHeight
-      , target = this.target;
+    const prevScrollHeight = this.target.scrollHeight;
+    const target = this.target;
 
     this.setScrollLock({
       at: () => target.scrollHeight - prevScrollHeight
@@ -221,7 +218,7 @@ class Scrollinga {
    */
   addImageListeners(mutations) {
     mutations.forEach((mutation) => {
-      var nodes = utils.toArray.call(mutation.addedNodes);
+      const nodes = utils.toArray.call(mutation.addedNodes);
 
       nodes.forEach((node) => {
         if (node.tagName === 'IMG') {
@@ -229,7 +226,7 @@ class Scrollinga {
         }
 
         if (node.getElementsByTagName) {
-          var childImages = utils.toArray.call(node.getElementsByTagName('img'));
+          const childImages = utils.toArray.call(node.getElementsByTagName('img'));
 
           childImages.forEach((image) => {
             this.listenToImageLoad(image);
