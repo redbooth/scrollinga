@@ -1,6 +1,6 @@
 {
   "name": "scrollinga",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Keeps scroll at bottom for HTML-based chat-like apps.",
   "main": "dist/scrollinga.js",
   "jsnext:main": "scrollinga.js",
