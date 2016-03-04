@@ -5,6 +5,7 @@
   "main": "dist/scrollinga.js",
   "jsnext:main": "scrollinga.js",
   "scripts": {
+    "build": "webpack",
     "test": "npm test"
   },
   "repository": {
