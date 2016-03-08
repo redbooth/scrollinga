@@ -127,7 +127,11 @@ class Scrollinga {
    * @return {Boolean}
    */
   isScrollDown() {
-    return (this.target.scrollTop + this.target.clientHeight === this.target.scrollHeight);
+    const pixelRatio = window.devicePixelRatio || 1;
+    const clientHeight = Math.floor((this.target.clientHeight + this.target.scrollTop) / pixelRatio);
+    const scrollHeight = Math.floor(this.target.scrollHeight / pixelRatio);
+
+    return (scrollHeight - clientHeight) < pixelRatio;
   }
 
   /**
